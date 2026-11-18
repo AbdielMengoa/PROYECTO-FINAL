@@ -11,9 +11,9 @@ Proyecto académico desarrollado para la asignatura de **Programación Web I**. 
 ## 👥 Integrantes del Grupo
 
 * **Integrante 1:** Abdiel Sergio Mengoa Pacheco — *Arquitectura Base, Sistema de Autenticación y Módulo 1 (Detención de Emergencia)*
-* **Integrante 2:** [Nombre del Integrante 2] — *Módulo 2 (Control de Mantenimiento)*
-* **Integrante 3:** [Nombre del Integrante 3] — *Módulo 3 (Viento y Oscilación)*
-* **Integrante 4:** [Nombre del Integrante 4] — *Módulo 4 (Monitoreo de Sensores y Validaciones RegExp)*
+* **Integrante 2:** Luis Boris Casablanca Condori — *Módulo 2 (Control de Mantenimiento)*
+* **Integrante 3:** EMIR MARCELO FLORES JARANDILLA — *Módulo 3 (Viento y Oscilación)*
+* **Integrante 4:** ALEX FABIAN MACHACA CHIPANA — *Módulo 4 (Monitoreo de Sensores y Validaciones RegExp)*
 
 ---
 
