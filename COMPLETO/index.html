@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMTELE-WEB | Panel de Monitoreo Integral</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SECCIÓN DE AUTENTICACIÓN -->
+    <div id="seccion-auth" class="contenedor-auth">
+        <div class="tarjeta-auth">
+            <h1>SIMTELE-WEB</h1>
+            <p>Control Central - Personal Operativo de Mi Teleférico</p>
+
+            <div id="form-login-container">
+                <h2>Iniciar Sesión</h2>
+                <form id="form-login">
+                    <label for="login-user">Usuario / Cédula:</label>
+                    <input type="text" id="login-user" required placeholder="Ingrese su usuario">
+                    <label for="login-pass">Contraseña:</label>
+                    <input type="password" id="login-pass" required placeholder="••••••••">
+                    <button type="submit" id="btn-submit-login" class="btn-principal">Ingresar al Sistema</button>
+                </form>
+                <p class="enlace-cambio" onclick="mostrarVistaAuth('registro')">¿No tienes cuenta? Regístrate aquí</p>
+                <p class="enlace-cambio" onclick="mostrarVistaAuth('recuperar')">¿Olvidaste tu contraseña?</p>
+            </div>
+
+            <div id="form-registro-container" class="oculto">
+                <h2>Crear Cuenta de Operador</h2>
+                <p class="nota" style="text-align: left; margin-bottom: 10px;">La contraseña debe tener mínimo 8 caracteres.</p>
+                <form id="form-registro">
+                    <label for="reg-user">Nuevo Usuario:</label>
+                    <input type="text" id="reg-user" required placeholder="Elija un usuario">
+                    <label for="reg-pass">Contraseña (Mín. 8 caracteres):</label>
+                    <input type="password" id="reg-pass" required placeholder="Mínimo 8 caracteres">
+                    <button type="submit" class="btn-principal">Registrarse</button>
+                </form>
+                <p class="enlace-cambio" onclick="mostrarVistaAuth('login')">¿Ya tienes cuenta? Inicia sesión</p>
+            </div>
+
+            <div id="form-recuperar-container" class="oculto">
+                <h2>Recuperar Cuenta</h2>
+                <p class="nota" style="text-align: left; margin-bottom: 10px;">La nueva contraseña debe tener mínimo 8 caracteres.</p>
+                <form id="form-recuperar">
+                    <label for="rec-user">Usuario:</label>
+                    <input type="text" id="rec-user" required placeholder="Su usuario registrado">
+                    <label for="rec-nueva-pass">Nueva Contraseña (Mín. 8 caracteres):</label>
+                    <input type="password" id="rec-nueva-pass" required placeholder="Nueva contraseña">
+                    <button type="submit" class="btn-principal">Restablecer Contraseña</button>
+                </form>
+                <p class="enlace-cambio" onclick="mostrarVistaAuth('login')">Volver al Login</p>
+            </div>
+
+            <p id="mensaje-auth" class="error"></p>
+        </div>
+    </div>
+
+    <!-- PANEL PRINCIPAL DEL SISTEMA -->
+    <div id="seccion-panel" class="oculto">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>SIMTELE-WEB</h1>
+                    <p>Panel Interactivo de Prevención y Monitoreo - Mi Teleférico</p>
+                </div>
+                <div class="info-usuario">
+                    <span id="usuario-activo"></span>
+                    <button id="btn-logout" class="btn-secundario">Cerrar Sesión</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="menu-navegacion">
+            <a href="#modulo1" class="nav-btn borde-rojo-btn">1. Detención</a>
+            <a href="#modulo2" class="nav-btn borde-amarillo-btn">2. Mantenimiento</a>
+            <a href="#modulo3" class="nav-btn borde-verde-btn">3. Viento</a>
+            <a href="#modulo4" class="nav-btn borde-azul-btn">4. Sensores</a>
+        </nav>
+
+        <main>
+            <section class="tarjeta descripcion-sistema">
+                <h2>Acerca de SIMTELE-WEB y sus Módulos</h2>
+                <p>
+                    <strong>Mi Teleférico</strong> es el sistema de transporte por cable más extenso del mundo, uniendo La Paz y El Alto. 
+                    <strong>SIMTELE-WEB</strong> simula el control preventivo y monitoreo de variables de seguridad.
+                </p>
+                <div class="grid-resumen-modulos">
+                    <div class="resumen-card"><span class="badge-rojo">Módulo 1</span><h4>Detención de Emergencia</h4><p>Calcula distancias de frenado y reacción de cabinas.</p></div>
+                    <div class="resumen-card"><span class="badge-amarillo">Módulo 2</span><h4>Control de Mantenimiento</h4><p>Administra componentes y horas de operación.</p></div>
+                    <div class="resumen-card"><span class="badge-verde">Módulo 3</span><h4>Viento y Oscilación</h4><p>Analiza ráfagas meteorológicas con umbrales didácticos.</p></div>
+                    <div class="resumen-card"><span class="badge-azul">Módulo 4</span><h4>Monitoreo de Sensores</h4><p>Valida códigos estrictos (<code>SEN-001</code>).</p></div>
+                </div>
+            </section>
+
+            <!-- MÓDULO 1 -->
+            <section id="modulo1" class="tarjeta borde-rojo">
+                <div class="modulo-header"><h2>1. Detención de Emergencia</h2><span class="tag-linea linea-roja">Línea Roja</span></div>
+                <p class="nota">Simulación didáctica: umbral máximo de frenado de 50 metros.</p>
+                <form id="form-detencion">
+                    <label for="velocidad">Velocidad de cabina (km/h):</label>
+                    <input type="number" id="velocidad" step="any" placeholder="Ej: 72" required>
+                    <label for="tiempo">Tiempo de reacción (segundos):</label>
+                    <input type="number" id="tiempo" step="any" placeholder="Ej: 3" required>
+                    <button type="submit" class="btn-rojo">Calcular Distancia</button>
+                </form>
+                <div id="resultado-detencion" class="caja-resultado"></div>
+                <div class="contenedor-tabla" style="margin-top: 15px;">
+                    <h3 style="font-size: 15px; color: #c8102e;">📋 Historial de Detención (LocalStorage)</h3>
+                    <table>
+                        <thead><tr><th>Velocidad</th><th>Tiempo</th><th>Distancia</th><th>Estado</th></tr></thead>
+                        <tbody id="lista-historial-detencion"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- MÓDULO 2 -->
+            <section id="modulo2" class="tarjeta borde-amarillo">
+                <div class="modulo-header"><h2>2. Control de Mantenimiento</h2><span class="tag-linea linea-amarilla">Línea Amarilla</span></div>
+                <p class="nota">Registro y gestión preventiva de componentes mecánicos.</p>
+                <form id="form-mantenimiento">
+                    <label for="componente">Nombre del componente:</label>
+                    <input type="text" id="componente" placeholder="Ej: Polea Motriz" required>
+                    <label for="horas">Horas de uso:</label>
+                    <input type="number" id="horas" placeholder="Ej: 120" min="0" step="any" required>
+                    <label for="estado">Estado del componente:</label>
+                    <select id="estado"><option value="Normal">Normal</option><option value="Revisión">Revisión</option><option value="Urgente">Urgente</option></select>
+                    <button type="submit" class="btn-amarillo">+ Agregar Registro</button>
+                </form>
+                <p id="mensaje-mantenimiento" class="error"></p>
+                <div class="contenedor-tabla">
+                    <table>
+                        <thead><tr><th>Componente</th><th>Horas de Uso</th><th>Estado</th><th>Acción</th></tr></thead>
+                        <tbody id="tabla-mantenimiento"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- MÓDULO 3 -->
+            <section id="modulo3" class="tarjeta borde-verde">
+                <div class="modulo-header"><h2>3. Viento y Oscilación</h2><span class="tag-linea linea-verde">Línea Verde</span></div>
+                <p class="nota">Umbrales: &lt; 25 Leve, 25-45 Moderado, &gt; 45 Fuerte. Ingrese 5 mediciones.</p>
+                <form id="form-viento">
+                    <div class="grid-viento">
+                        <div><label for="viento1">Med 1:</label><input type="number" id="viento1" step="any" placeholder="10" required></div>
+                        <div><label for="viento2">Med 2:</label><input type="number" id="viento2" step="any" placeholder="20" required></div>
+                        <div><label for="viento3">Med 3:</label><input type="number" id="viento3" step="any" placeholder="30" required></div>
+                        <div><label for="viento4">Med 4:</label><input type="number" id="viento4" step="any" placeholder="40" required></div>
+                        <div><label for="viento5">Med 5:</label><input type="number" id="viento5" step="any" placeholder="50" required></div>
+                    </div>
+                    <button type="submit" class="btn-verde">Analizar y Guardar Mediciones</button>
+                </form>
+                <div id="resultado-viento" class="caja-resultado"></div>
+                <div class="contenedor-tabla" style="margin-top: 15px;">
+                    <h3 style="font-size: 15px; color: #009a44;">📋 Historial de Mediciones de Viento</h3>
+                    <table>
+                        <thead><tr><th>N°</th><th>Promedio</th><th>Máximo</th><th>Clasificación</th><th>Acción</th></tr></thead>
+                        <tbody id="tabla-viento"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- MÓDULO 4 -->
+            <section id="modulo4" class="tarjeta borde-azul">
+                <div class="modulo-header"><h2>4. Monitoreo de Sensores</h2><span class="tag-linea linea-azul">Línea Celeste</span></div>
+                <p class="nota">Formato obligatorio de código: <code>SEN-001</code>.</p>
+                <form id="form-sensores" novalidate>
+                    <label for="codigo-sensor">Código del sensor:</label>
+                    <input type="text" id="codigo-sensor" placeholder="Ej: SEN-001">
+                    <label for="tipo-sensor">Tipo de sensor:</label>
+                    <select id="tipo-sensor">
+                        <option value="Tensión de Cable">Tensión de Cable (kN)</option>
+                        <option value="Temperatura Motor">Temperatura Motor (°C)</option>
+                        <option value="Velocidad Polea">Velocidad Polea (km/h)</option>
+                        <option value="Intensidad de Viento">Intensidad de Viento (km/h)</option>
+                    </select>
+                    <label for="lectura-sensor">Lectura numérica:</label>
+                    <input type="text" id="lectura-sensor" placeholder="Ej: 85.5">
+                    <button type="submit" class="btn-azul">Registrar Sensor</button>
+                </form>
+                <p id="error-sensor" class="error"></p>
+                <div class="contenedor-tabla" style="margin-top: 15px;">
+                    <h3 style="font-size: 15px; color: #0072ce;">📋 Sensores Validados y Registrados</h3>
+                    <table>
+                        <thead><tr><th>Código</th><th>Tipo</th><th>Lectura</th><th>Acción</th></tr></thead>
+                        <tbody id="tabla-sensores"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>SIMTELE-WEB | Proyecto Académico de Programación Web I</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
